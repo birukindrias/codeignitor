@@ -6,19 +6,21 @@ use App\Controllers\BaseController;
 
 class Auth extends BaseController
 {
-    public function index()
+    public function regpage()
     {
-        return view('main');
+        return view('auth/reg');
     }
-    public function updateUser(int $userID)
+    public function reg()
     {
         if (!$this->validate([
-            'email' => "required|is_unique[users.email,id,{$userID}]",
-            'name'  => 'required|alpha_numeric_spaces',
+            'email' => "required",
+            'username'  => 'required',
         ])) {
             return view('users/update', [
                 'errors' => $this->validator->getErrors(),
             ]);
+        }else{
+            return 'yep';
         }
 
         // do something here if successful...
